@@ -1,0 +1,5 @@
+aws ecs register-task-definition --cli-input-json file://task.json
+aws ecs create-service --cli-input-json file://file.json
+
+// deploy new container
+aws ecs update-service --cluster <cluster_name> --service <service_name> --force-new-update

@@ -1,0 +1,14 @@
+{
+  "cluster": "movies-app-cluster2",
+  "serviceName": "movies-service-v5",
+  "taskDefinition": "movies-app",
+  "loadBalancers": [
+      {
+          "targetGroupArn": "arn:aws:elasticloadbalancing:ap-southeast-1:187325535940:targetgroup/movies-app-target/3a484517a7941a8a",
+          "containerName": "proxy",
+          "containerPort": 80
+      }
+  ],
+  "desiredCount": 1,
+  "role": "ecsServiceRole"
+}

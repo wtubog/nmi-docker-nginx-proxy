@@ -1,0 +1,51 @@
+{
+  "family": "movies-app",
+  "networkMode": "bridge",
+  "volumes": [],
+  "placementConstraints": [],
+  "containerDefinitions": [
+    {
+      "name": "proxy",
+      "image": "187325535940.dkr.ecr.ap-southeast-1.amazonaws.com/nginx-proxy",
+      "cpu": 128,
+      "memoryReservation": 128,
+      "portMappings": [
+        {
+          "containerPort": 80,
+          "protocol": "tcp"
+        }
+      ],
+      "essential": true,
+      "links": [
+        "frontend",
+        "api"
+      ]
+    },
+    {
+      "name": "frontend",
+      "image": "187325535940.dkr.ecr.ap-southeast-1.amazonaws.com/movies-app",
+      "cpu": 128,
+      "memoryReservation": 128,
+      "portMappings": [
+        {
+          "containerPort": 8081,
+          "protocol": "tcp"
+        }
+      ],
+      "essential": true
+    },
+    {
+      "name": "api",
+      "image": "187325535940.dkr.ecr.ap-southeast-1.amazonaws.com/movies-backend",
+      "cpu": 128,
+      "memoryReservation": 128,
+      "portMappings": [
+        {
+          "containerPort": 8080,
+          "protocol": "tcp"
+        }
+      ],
+      "essential": true
+    }
+  ]
+}
